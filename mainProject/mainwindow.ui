@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>538</width>
+    <height>347</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(225, 187, 255);
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QDateTimeEdit" name="dateTimeSpin">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>120</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(251, 255, 198);
+</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="algoOutputLabe">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>521</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(248, 232, 228);
+border: 1px transparent;
+border-radius: 5px;
+
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>186</x>
+      <y>0</y>
+      <width>161</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>LilyUPC</family>
+      <pointsize>24</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Algorithm Output</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>100</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>LilyUPC</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Set value</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>16</x>
+      <y>153</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Aharoni</family>
+     </font>
+    </property>
+    <property name="text">
+     <string>Seconds</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="secondsSpin">
+    <property name="geometry">
+     <rect>
+      <x>88</x>
+      <y>150</y>
+      <width>42</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(251, 255, 198);
+</string>
+    </property>
+    <property name="maximum">
+     <number>59</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>120</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+border: 1px solid black;
+border-radius: 5px;
+background-color: rgb(255, 243, 222)
+}
+
+QPushButton:hover{
+background-color: rgb(84, 255, 235)
+}</string>
+    </property>
+    <property name="text">
+     <string>PUSH</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="structure2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>R-B tree</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="structure3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>250</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hash table</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="structure4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>280</y>
+      <width>82</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>B++ tree</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="structure1">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>190</y>
+      <width>131</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cyclic doubly linked list</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="createNewButton">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>120</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+border: 1px solid black;
+border-radius: 5px;
+background-color: rgb(255, 243, 222)
+}
+
+QPushButton:hover{
+background-color: rgb(84, 255, 235)
+}</string>
+    </property>
+    <property name="text">
+     <string>CREATE NEW</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="findButton">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>120</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+border: 1px solid black;
+border-radius: 5px;
+background-color: rgb(255, 243, 222)
+}
+
+QPushButton:hover{
+background-color: rgb(84, 255, 235)
+}</string>
+    </property>
+    <property name="text">
+     <string>FIND</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deleteButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>120</y>
+      <width>75</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+border: 1px solid black;
+border-radius: 5px;
+background-color: rgb(255, 243, 222)
+}
+
+QPushButton:hover{
+background-color: rgb(84, 255, 235)
+}</string>
+    </property>
+    <property name="text">
+     <string>DELETE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sortButton">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>190</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+border: 1px solid black;
+border-radius: 5px;
+background-color: rgb(255, 243, 222)
+}
+
+QPushButton:hover{
+background-color: rgb(84, 255, 235)
+}</string>
+    </property>
+    <property name="text">
+     <string>SORT</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="sortBox">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>190</y>
+      <width>69</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(251, 255, 198);
+</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Insert</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Heap</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Merge</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Count</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QComboBox" name="keyBox">
+    <property name="geometry">
+     <rect>
+      <x>463</x>
+      <y>143</y>
+      <width>69</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(251, 255, 198);</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Date</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Time</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Hours</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Minutes</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Seconds</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Year</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Month</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Day</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="sortCriteriaLabel">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>190</y>
+      <width>71</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Aharoni</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Sort criteria</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>120</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Aharoni</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Key</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="key2">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>220</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>key:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="key3">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>250</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>key:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="key4">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>280</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>key:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="key1">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>190</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>key:</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>538</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
