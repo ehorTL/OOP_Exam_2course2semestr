@@ -1,7 +1,9 @@
 #ifndef LIST_H
 #define LIST_H
 
-#include<QVector>
+#include <QVector>
+#include <QString>
+#include <QFile>
 
 template <class T>
 class Node
@@ -25,6 +27,7 @@ class List
     Node<T> *head, *tail;
     int size;
 public:
+    const QString pathToOutput = "C:\\QTProjectsMy\\output.txt";
     List()
     {
         head = tail = nullptr;
@@ -34,6 +37,7 @@ public:
     QVector<Node<T>*> find(T Data, long (*keyIdentityFunction)(T));
     bool deleteNode(Node<T> *NodePtr);
     void pushBack(T Data);
+    void printListInFile(QString (*DataToString)(T));
 };
 
 
@@ -73,19 +77,23 @@ template <class T> bool List<T>::deleteNode(Node<T> *NodePtr)
     {
         delete NodePtr;
         head = tail = nullptr;
+        size = 0;
     }
     else
     {
         NodePtr->prev->next = NodePtr->next;
         NodePtr->next->prev = NodePtr->prev;
         delete NodePtr;
+        size--;
     }
+
+    return true;
 }
 
 template <class T> QVector<Node<T>*> List<T>::find(T keyData, long (*keyIdentityFunction)(T))
 {
     QVector<Node<T>*> findResult;
-    if (size==0) return findResult; //empty vector
+    //if (size==0) return findResult; //empty vector
     //else
     Node<T> *tmpPtr = head;
     for (int i=0; i<size; i++)
@@ -96,6 +104,23 @@ template <class T> QVector<Node<T>*> List<T>::find(T keyData, long (*keyIdentity
         }
         tmpPtr=tmpPtr->next;
     }
+    return findResult;
+}
+
+template<class T> void List<T>::printListInFile(QString (*DataToString)(T))
+{
+    QFile file (pathToOutput);
+    if(!file.open(QIODevice::WriteOnly)) //open file
+    {
+        return;
+    }
+    QString printedList;
+    Node<T> *tmpPtr = head;
+    for (int i=0; i<size; i++)
+    {
+        printedList += DataToString(tmpPtr->Data) + "/n";
+    }
+    file.write(printedList.toStdString().c_str());
 }
 
 
