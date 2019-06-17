@@ -28,12 +28,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     list.cpp \
-    dateandtime.cpp
+    dateandtime.cpp \
+    rbtree.cpp \
+    hashtable.cpp \
+    bplustree.cpp
 
 HEADERS += \
         mainwindow.h \
     list.h \
-    dateandtime.h
+    dateandtime.h \
+    rbtree.h \
+    hashtable.h \
+    bplustree.h
 
 FORMS += \
         mainwindow.ui

@@ -313,3 +313,211 @@ void MainWindow::on_findButton_clicked()
     }
 
 }
+
+/**
+* Comparator functions for different sort criteria.
+*/
+bool greaterThan_byTime(DateAndTime a, DateAndTime b)
+{
+    return (keyDateAndTime_byTime(a) > keyDateAndTime_byTime(b));
+}
+bool greaterThan_byDate(DateAndTime a, DateAndTime b)
+{
+    return (keyDateAndTime_byDate(a) > keyDateAndTime_byDate(b));
+}
+bool greaterThan_byDateTime(DateAndTime a, DateAndTime b)
+{
+    return (keyDateAndTime_byDateTime(a) > keyDateAndTime_byDateTime(b));
+}
+bool greaterThan_byYear(DateAndTime a, DateAndTime b)
+{
+    return (a.dateTime.date().year() > b.dateTime.date().year());
+}
+bool greaterThan_byMonth(DateAndTime a, DateAndTime b)
+{
+    return (a.dateTime.date().month() > b.dateTime.date().month());
+}
+bool greaterThan_byDay(DateAndTime a, DateAndTime b)
+{
+    return (a.dateTime.date().day() > b.dateTime.date().day());
+}
+bool greaterThan_byHour(DateAndTime a, DateAndTime b)
+{
+    return (a.dateTime.time().hour() > b.dateTime.time().hour());
+}
+bool greaterThan_byMinute(DateAndTime a, DateAndTime b)
+{
+    return (a.dateTime.time().minute() > b.dateTime.time().minute());
+}
+bool greaterThan_bySecond(DateAndTime a, DateAndTime b)
+{
+    return  (a.seconds > b.seconds);
+}
+///------------------------------------------------------
+
+void MainWindow::on_sortButton_clicked()
+{
+    if (!(ui->structure1->isChecked())) //sorting is only appplied to list structure
+    {
+        return;
+    }
+    //else
+    if (ui->sortBox->currentIndex() == 0)
+    {
+        if (ui->keyBox->currentIndex()==0)
+        {
+            list->sortInsert(greaterThan_byDate);
+        }
+        else if (ui->keyBox->currentIndex()==1)
+        {
+            list->sortInsert(greaterThan_byTime);
+        }
+        else if (ui->keyBox->currentIndex()==2)
+        {
+            list->sortInsert(greaterThan_byHour);
+        }
+        else if (ui->keyBox->currentIndex()==3)
+        {
+            list->sortInsert(greaterThan_byMinute);
+        }
+        else if (ui->keyBox->currentIndex()==4)
+        {
+            list->sortInsert(greaterThan_bySecond);
+        }
+        else if (ui->keyBox->currentIndex()==5)
+        {
+            list->sortInsert(greaterThan_byYear);
+        }
+        else if (ui->keyBox->currentIndex()==6)
+        {
+            list->sortInsert(greaterThan_byMonth);
+        }
+        else if (ui->keyBox->currentIndex()==7)
+        {
+            list->sortInsert(greaterThan_byDay);
+        }
+        else if (ui->keyBox->currentIndex()==8)
+        {
+            list->sortInsert(greaterThan_byDateTime);
+        }
+    }
+    else if (ui->sortBox->currentIndex() == 1)
+    {
+        if (ui->keyBox->currentIndex()==0)
+        {
+            list->sortHeap(greaterThan_byDate);
+        }
+        else if (ui->keyBox->currentIndex()==1)
+        {
+            list->sortHeap(greaterThan_byTime);
+        }
+        else if (ui->keyBox->currentIndex()==2)
+        {
+            list->sortHeap(greaterThan_byHour);
+        }
+        else if (ui->keyBox->currentIndex()==3)
+        {
+            list->sortHeap(greaterThan_byMinute);
+        }
+        else if (ui->keyBox->currentIndex()==4)
+        {
+            list->sortHeap(greaterThan_bySecond);
+        }
+        else if (ui->keyBox->currentIndex()==5)
+        {
+            list->sortHeap(greaterThan_byYear);
+        }
+        else if (ui->keyBox->currentIndex()==6)
+        {
+            list->sortHeap(greaterThan_byMonth);
+        }
+        else if (ui->keyBox->currentIndex()==7)
+        {
+            list->sortHeap(greaterThan_byDay);
+        }
+        else if (ui->keyBox->currentIndex()==8)
+        {
+            list->sortHeap(greaterThan_byDateTime);
+        }
+    }
+    else if (ui->sortBox->currentIndex() == 2)
+    {
+        if (ui->keyBox->currentIndex()==0)
+        {
+            list->sortMerge(greaterThan_byDate);
+        }
+        else if (ui->keyBox->currentIndex()==1)
+        {
+            list->sortMerge(greaterThan_byTime);
+        }
+        else if (ui->keyBox->currentIndex()==2)
+        {
+            list->sortMerge(greaterThan_byHour);
+        }
+        else if (ui->keyBox->currentIndex()==3)
+        {
+            list->sortMerge(greaterThan_byMinute);
+        }
+        else if (ui->keyBox->currentIndex()==4)
+        {
+            list->sortMerge(greaterThan_bySecond);
+        }
+        else if (ui->keyBox->currentIndex()==5)
+        {
+            list->sortMerge(greaterThan_byYear);
+        }
+        else if (ui->keyBox->currentIndex()==6)
+        {
+            list->sortMerge(greaterThan_byMonth);
+        }
+        else if (ui->keyBox->currentIndex()==7)
+        {
+            list->sortMerge(greaterThan_byDay);
+        }
+        else if (ui->keyBox->currentIndex()==8)
+        {
+            list->sortMerge(greaterThan_byDateTime);
+        }
+    }
+    else if (ui->sortBox->currentIndex() == 3)
+    {
+        if (ui->keyBox->currentIndex()==0)
+        {
+            list->sortCount(greaterThan_byDate);
+        }
+        else if (ui->keyBox->currentIndex()==1)
+        {
+            list->sortCount(greaterThan_byTime);
+        }
+        else if (ui->keyBox->currentIndex()==2)
+        {
+            list->sortCount(greaterThan_byHour);
+        }
+        else if (ui->keyBox->currentIndex()==3)
+        {
+            list->sortCount(greaterThan_byMinute);
+        }
+        else if (ui->keyBox->currentIndex()==4)
+        {
+            list->sortCount(greaterThan_bySecond);
+        }
+        else if (ui->keyBox->currentIndex()==5)
+        {
+            list->sortCount(greaterThan_byYear);
+        }
+        else if (ui->keyBox->currentIndex()==6)
+        {
+            list->sortCount(greaterThan_byMonth);
+        }
+        else if (ui->keyBox->currentIndex()==7)
+        {
+            list->sortCount(greaterThan_byDay);
+        }
+        else if (ui->keyBox->currentIndex()==8)
+        {
+            list->sortCount(greaterThan_byDateTime);
+        }
+    }
+
+    showStructure();
+}

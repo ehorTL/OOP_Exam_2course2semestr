@@ -41,6 +41,11 @@ public:
     void pushBack(T Data);
     void printListInFile(QString (*DataToString)(T));
     void clear();
+
+    void sortInsert(bool (*firstGreaterThan)(T, T));
+    void sortMerge(bool (*firstGreaterThan)(T, T));
+    void sortHeap(bool (*firstGreaterThan)(T, T));
+    void sortCount(bool (*firstGreaterThan)(T, T));
 };
 
 
@@ -168,6 +173,24 @@ template <class T> void List<T>::clear()
     }
     size = 0;
     head = tail = nullptr;
+}
+
+template <class T> void List<T>::sortInsert(bool (*firstGreaterThan)(T, T))
+{
+    if (size==0 || size==1) return;
+
+}
+template <class T> void List<T>::sortMerge(bool (*firstGreaterThan)(T, T))
+{
+
+}
+template <class T> void List<T>:: sortHeap(bool (*firstGreaterThan)(T, T))
+{
+
+}
+template <class T> void List<T>::sortCount(bool (*firstGreaterThan)(T, T))
+{
+
 }
 
 #endif // LIST_H

@@ -412,7 +412,7 @@ background-color: rgb(84, 255, 235)
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>220</y>
+      <y>223</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -425,7 +425,7 @@ background-color: rgb(84, 255, 235)
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>250</y>
+      <y>253</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -438,20 +438,7 @@ background-color: rgb(84, 255, 235)
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>280</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>key:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="key1">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>190</y>
+      <y>283</y>
       <width>47</width>
       <height>13</height>
      </rect>
