@@ -27,7 +27,7 @@ class List
     Node<T> *head, *tail;
     int size;
 public:
-    const QString pathToOutput = "C:\\QTProjectsMy\\output.txt";
+    const QString pathToOutput = "C:\\QTProjectsMy\\list.txt";
     List()
     {
         head = tail = nullptr;
@@ -38,6 +38,7 @@ public:
     bool deleteNode(Node<T> *NodePtr);
     void pushBack(T Data);
     void printListInFile(QString (*DataToString)(T));
+    void clear();
 };
 
 
@@ -49,7 +50,6 @@ template <class T> void List<T>::pushBack(T Data)
         head = newNode;
         head->next = head->prev = head;
         tail = head;
-
     }
     else if (size == 1) //if tail == head
     {
@@ -118,10 +118,25 @@ template<class T> void List<T>::printListInFile(QString (*DataToString)(T))
     Node<T> *tmpPtr = head;
     for (int i=0; i<size; i++)
     {
-        printedList += DataToString(tmpPtr->Data) + "/n";
+        printedList += DataToString(tmpPtr->Data) + "\n";
+        tmpPtr = tmpPtr->next;
     }
     file.write(printedList.toStdString().c_str());
 }
 
+
+template <class T> void List<T>::clear()
+{
+    Node<T> *ndPtr = head;
+    Node<T> *ndPtrNext = head->next;
+    for (int i=0; i<size; i++)
+    {
+        ndPtrNext = ndPtr->next;
+        delete ndPtr;
+        ndPtr = ndPtrNext;
+    }
+    size = 0;
+    head = tail = nullptr;
+}
 
 #endif // LIST_H

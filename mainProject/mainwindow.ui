@@ -521,7 +521,7 @@ background-color: rgb(84, 255, 235)
      <string/>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QTextBrowser" name="outputAlgo">
     <property name="geometry">
      <rect>
       <x>10</x>

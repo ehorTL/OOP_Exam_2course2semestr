@@ -14,9 +14,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+//--------------------------------------------------------------------------
 
 //function to convert structure fields in visible form
-QString DateAndTimeToString(DateAndTime &dt)
+QString DateAndTimeToString(DateAndTime dt)
 {
     QString result;
     result += QString::number(dt.dateTime.date().day()) + "." +
@@ -92,4 +93,55 @@ long long keyDateAndTime_byMinute(DateAndTime &dt)
 long long keyDateAndTime_bySecond(DateAndTime &dt)
 {
     return (long long)(dt.seconds);
+}
+//----------------------------------------------------------
+
+
+void MainWindow::pushValue()
+{
+    DateAndTime dt;
+    dt.dateTime = ui->dateTimeSpin->dateTime();
+    dt.seconds = ui->secondsSpin->value();
+
+
+    if (ui->structure1->isChecked()) //if DL chosen
+    {
+        if (list==nullptr)
+        {
+            list = new List<DateAndTime>();
+        }
+        list->pushBack(dt);
+        //qDebug() << DateAndTimeToString(dt); //works correctly
+    }
+}
+
+void MainWindow::showStructure()
+{
+    QString path;
+    if (ui->structure1->isChecked())
+    {
+        if (list==nullptr) return;
+        list->printListInFile(DateAndTimeToString);
+        path = list->pathToOutput;
+    }
+
+    QFile file(path);
+    file.open(QIODevice::ReadOnly);
+    QString result = "";
+    while(!file.atEnd())
+    {
+        result += file.readLine();
+    }
+    ui->outputAlgo->setText(result);
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    pushValue();
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    showStructure();
 }
