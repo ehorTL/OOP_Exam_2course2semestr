@@ -124,6 +124,18 @@ void MainWindow::showStructure()
         list->printListInFile(DateAndTimeToString);
         path = list->pathToOutput;
     }
+    else if (ui->structure2->isChecked())
+    {
+
+    }
+    else if (ui->structure2->isChecked())
+    {
+
+    }
+    else if (ui->structure2->isChecked())
+    {
+
+    }
 
     QFile file(path);
     file.open(QIODevice::ReadOnly);
@@ -205,6 +217,18 @@ void MainWindow::on_deleteButton_clicked()
         }
 
         list->deleteNode(delNode);
+    }
+    else if (ui->structure2->isChecked())
+    {
+
+    }
+    else if (ui->structure3->isChecked())
+    {
+
+    }
+    else if (ui->structure4->isChecked())
+    {
+
     }
 
     showStructure();
