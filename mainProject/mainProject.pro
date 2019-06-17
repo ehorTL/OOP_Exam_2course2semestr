@@ -27,11 +27,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    list.cpp
+    list.cpp \
+    dateandtime.cpp
 
 HEADERS += \
         mainwindow.h \
-    list.h
+    list.h \
+    dateandtime.h
 
 FORMS += \
         mainwindow.ui
