@@ -520,9 +520,9 @@ background-color: rgb(84, 255, 235)
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>22</y>
       <width>521</width>
-      <height>81</height>
+      <height>78</height>
      </rect>
     </property>
     <property name="styleSheet">
