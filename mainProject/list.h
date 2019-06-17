@@ -34,7 +34,7 @@ public:
         size = 0;
     }
 
-    QVector<Node<T>*> find(T Data, long long(*keyIdentityFunction)(T));
+    Node<T>* find(T Data, long long(*keyIdentityFunction)(T));
     bool deleteNode(Node<T> *NodePtr);
     void pushBack(T Data);
     void printListInFile(QString (*DataToString)(T));
@@ -83,6 +83,14 @@ template <class T> bool List<T>::deleteNode(Node<T> *NodePtr)
     {
         NodePtr->prev->next = NodePtr->next;
         NodePtr->next->prev = NodePtr->prev;
+        if (NodePtr == head)
+        {
+            head = head->next;
+        }
+        else if (NodePtr == tail)
+        {
+            tail = tail->prev;
+        }
         delete NodePtr;
         size--;
     }
@@ -90,21 +98,19 @@ template <class T> bool List<T>::deleteNode(Node<T> *NodePtr)
     return true;
 }
 
-template <class T> QVector<Node<T>*> List<T>::find(T keyData, long long(*keyIdentityFunction)(T))
+template <class T> Node<T>* List<T>::find(T keyData, long long(*keyIdentityFunction)(T))
 {
-    QVector<Node<T>*> findResult;
-    //if (size==0) return findResult; //empty vector
-    //else
     Node<T> *tmpPtr = head;
     for (int i=0; i<size; i++)
     {
         if (keyIdentityFunction(tmpPtr->Data) == keyIdentityFunction(keyData))
         {
-            findResult.push_back(tmpPtr);
+            return tmpPtr;
         }
         tmpPtr=tmpPtr->next;
     }
-    return findResult;
+
+    return nullptr; //nothing found
 }
 
 template<class T> void List<T>::printListInFile(QString (*DataToString)(T))
@@ -122,6 +128,7 @@ template<class T> void List<T>::printListInFile(QString (*DataToString)(T))
         tmpPtr = tmpPtr->next;
     }
     file.write(printedList.toStdString().c_str());
+    file.close();
 }
 
 
