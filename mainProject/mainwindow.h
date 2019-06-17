@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 
+#include "list.h"
+#include "dateandtime.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -14,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 
 private:
     Ui::MainWindow *ui;

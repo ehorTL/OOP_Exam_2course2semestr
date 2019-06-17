@@ -3,6 +3,7 @@
 
 #include<QString>
 #include <QTime>
+#include<QDateTime>
 
 class DateAndTime
 {
@@ -13,8 +14,6 @@ public:
         seconds = sec%60; //no errors
         dateTime = dt;
     }
-
-    QString DateAndTimeToString();
 
     QDateTime dateTime;
     int seconds;

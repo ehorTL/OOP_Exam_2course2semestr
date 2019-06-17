@@ -364,6 +364,11 @@ background-color: rgb(84, 255, 235)
       <string>Day</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>DateTime</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="sortCriteriaLabel">
     <property name="geometry">

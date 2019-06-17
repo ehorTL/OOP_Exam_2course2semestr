@@ -34,7 +34,7 @@ public:
         size = 0;
     }
 
-    QVector<Node<T>*> find(T Data, long (*keyIdentityFunction)(T));
+    QVector<Node<T>*> find(T Data, long long(*keyIdentityFunction)(T));
     bool deleteNode(Node<T> *NodePtr);
     void pushBack(T Data);
     void printListInFile(QString (*DataToString)(T));
@@ -90,7 +90,7 @@ template <class T> bool List<T>::deleteNode(Node<T> *NodePtr)
     return true;
 }
 
-template <class T> QVector<Node<T>*> List<T>::find(T keyData, long (*keyIdentityFunction)(T))
+template <class T> QVector<Node<T>*> List<T>::find(T keyData, long long(*keyIdentityFunction)(T))
 {
     QVector<Node<T>*> findResult;
     //if (size==0) return findResult; //empty vector
