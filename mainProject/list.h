@@ -4,6 +4,7 @@
 #include <QVector>
 #include <QString>
 #include <QFile>
+#include<QDebug>
 
 template <class T>
 class Node
@@ -35,6 +36,7 @@ public:
     }
 
     Node<T>* find(T Data, long long(*keyIdentityFunction)(T));
+    QVector<Node<T>*> findAll(T Data, long long(*keyIdentityFunction)(T)); //only for reading
     bool deleteNode(Node<T> *NodePtr);
     void pushBack(T Data);
     void printListInFile(QString (*DataToString)(T));
@@ -112,6 +114,28 @@ template <class T> Node<T>* List<T>::find(T keyData, long long(*keyIdentityFunct
 
     return nullptr; //nothing found
 }
+
+
+template <class T> QVector<Node<T>*> List<T>::findAll(T keyData, long long(*keyIdentityFunction)(T))
+{
+    QVector<Node<T>*> resultVector;
+    Node<T> *tmpPtr = head;
+    for (int i=0; i<size; i++)
+    {
+        if (keyIdentityFunction(tmpPtr->Data) == keyIdentityFunction(keyData))
+        {
+            resultVector.push_back(tmpPtr);
+        }
+        tmpPtr=tmpPtr->next;
+    }
+
+    for (int i=0; i<resultVector.size(); i++)
+    {
+        qDebug()<< QString::number(i) << " ";
+    }
+    return resultVector;
+}
+
 
 template<class T> void List<T>::printListInFile(QString (*DataToString)(T))
 {

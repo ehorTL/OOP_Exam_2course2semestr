@@ -209,3 +209,83 @@ void MainWindow::on_deleteButton_clicked()
 
     showStructure();
 }
+
+void MainWindow::on_findButton_clicked()
+{
+    DateAndTime key;
+    key.dateTime = ui->dateTimeSpin->dateTime();
+    key.seconds = ui->secondsSpin->value();
+
+    if (ui->structure1->isChecked()) //if checked list structure
+    {
+        QVector<Node<DateAndTime>*> foundValues;
+
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byDate);
+        }
+        else if(ui->keyBox->currentIndex() == 1)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byTime);
+        }
+        else if(ui->keyBox->currentIndex() == 2)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byHour);
+        }
+        else if(ui->keyBox->currentIndex() == 3)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byMinute);
+        }
+        else if(ui->keyBox->currentIndex() == 4)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_bySecond);
+        }
+        else if(ui->keyBox->currentIndex() == 5)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byYear);
+        }
+        else if(ui->keyBox->currentIndex() == 6)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byMonth);
+        }
+        else if(ui->keyBox->currentIndex() == 7)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byDay);
+        }
+        else if(ui->keyBox->currentIndex() == 7)
+        {
+            foundValues = list->findAll(key, keyDateAndTime_byDateTime);
+        }
+
+        //writing file just for easy output taking
+        //rewrites output file
+        QFile file (list->pathToOutput);
+        if(!file.open(QIODevice::WriteOnly)) //open file
+        {
+            return;
+        }
+        QString printedList;
+        for (int i=0; i<foundValues.size(); i++)
+        {
+            printedList += DateAndTimeToString(foundValues[i]->Data) + "\n";
+        }
+        file.write(printedList.toStdString().c_str());
+        file.close();
+        //---
+
+        ui->outputAlgo->setText(printedList); //setting visible result
+    }
+    else if (ui->structure2->isChecked())
+    {
+
+    }
+    else if (ui->structure3->isChecked())
+    {
+
+    }
+    else if (ui->structure4->isChecked())
+    {
+
+    }
+
+}
