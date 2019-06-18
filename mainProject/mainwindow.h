@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include<QDebug>
+#include<chrono>
+#include<ctime>
 #include "list.h"
 #include "dateandtime.h"
 #include"rbtree.h"

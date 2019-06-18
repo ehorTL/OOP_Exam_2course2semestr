@@ -715,5 +715,9 @@ void MainWindow::sort()
 
 void MainWindow::on_sortButton_clicked()
 {
+    auto startTime = std::chrono::steady_clock::now();
     sort();
+    auto endTime = std::chrono::steady_clock::now();
+    std::chrono::duration<double> diff = endTime - startTime;
+    ui->timeExecuteChangable->setText(QString::number(diff.count()));
 }
