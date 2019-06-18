@@ -52,7 +52,7 @@ public:
     void sortInsert(bool (*firstGreaterThan)(T, T));
     void sortMerge(bool (*firstGreaterThan)(T, T));
     //void sortHeap(std::priority_queue<T> &pq);
-    void sortCount(bool (*firstGreaterThan)(T, T));
+    void sortCount(long long(*DataKey)(T));
 };
 
 
@@ -201,35 +201,61 @@ template <class T> void List<T>::sortInsert(bool (*firstGreaterThan)(T, T))
         }
         curLastPos = curLastPos->next;
     }
-
 }
 
-//template <class T> void List<T>:: sortHeap(bool (*firstGreaterThan)(T, T))
-/*template <class T> void List<T>:: sortHeap(std::priority_queue<T> &pq)
-{
-    if (size==0 || size==1) return;
-    if (pq.size() != size) return;
-    //else
-    Node<T> *p = head;
-    for (int i=0; i<size; i++)
-    {
-        p->Data = pq.top();
-        pq.pop();
-        p = p->next;
-    }
-}
-*/
 
 template <class T> void List<T>::sortMerge(bool (*firstGreaterThan)(T, T))
 {
     if (size==0 || size==1) return;
+    //else
 }
 
 
 
-template <class T> void List<T>::sortCount(bool (*firstGreaterThan)(T, T))
+template <class T> void List<T>::sortCount(long long (*DataKey)(T))
 {
     if (size==0 || size==1) return;
+    //else
+    const int MAX_VECTOR_SIZE = 2000;
+    long long range = 1;
+    Node<T> *p = head;
+    int min = DataKey(head->Data);
+    int max = 1;
+    for (int i=0; i<size; i++)
+    {
+        if (DataKey(p->Data) > max)
+        {
+             max = DataKey(p->Data);
+        }
+        if ((DataKey(p->Data) < min))
+        {
+            min = DataKey(p->Data);
+        }
+        p = p->next;
+    }
+    range = max - min + 1;
+    if (range > MAX_VECTOR_SIZE || range==0) return; // count sort is no effective and can cause to errors or keys are equal
+
+    QVector<QVector<T>> stableSortVector;
+    stableSortVector.resize(range);
+
+    Node<T>* ptr = head;
+    for (int i=0; i<size; i++)
+    {
+        stableSortVector[DataKey(ptr->Data) - min].push_back(ptr->Data);
+        ptr = ptr->next;
+    }
+
+    Node<T> *pt = head;
+    for (int i=0; i<stableSortVector.size(); i++) //size == range
+    {
+        for (int j=0; j<stableSortVector[i].size(); j++)
+        {
+            pt->Data = stableSortVector[i][j];
+            qDebug()<< DataKey(pt->Data);
+            pt = pt->next;
+        }
+    }
 }
 
 #endif // LIST_H

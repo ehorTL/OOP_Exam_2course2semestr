@@ -673,44 +673,43 @@ void MainWindow::sort()
     {
         if (ui->keyBox->currentIndex()==0)
         {
-            list->sortCount(greaterThan_byDate);
+            list->sortCount(keyDateAndTime_byDate);
         }
         else if (ui->keyBox->currentIndex()==1)
         {
-            list->sortCount(greaterThan_byTime);
+            list->sortCount(keyDateAndTime_byTime);
         }
         else if (ui->keyBox->currentIndex()==2)
         {
-            list->sortCount(greaterThan_byHour);
+            list->sortCount(keyDateAndTime_byHour);
         }
         else if (ui->keyBox->currentIndex()==3)
         {
-            list->sortCount(greaterThan_byMinute);
+            list->sortCount(keyDateAndTime_byMinute);
         }
         else if (ui->keyBox->currentIndex()==4)
         {
-            list->sortCount(greaterThan_bySecond);
+            list->sortCount(keyDateAndTime_bySecond);
         }
         else if (ui->keyBox->currentIndex()==5)
         {
-            list->sortCount(greaterThan_byYear);
+            list->sortCount(keyDateAndTime_byYear);
         }
         else if (ui->keyBox->currentIndex()==6)
         {
-            list->sortCount(greaterThan_byMonth);
+            list->sortCount(keyDateAndTime_byMonth);
         }
         else if (ui->keyBox->currentIndex()==7)
         {
-            list->sortCount(greaterThan_byDay);
+            list->sortCount(keyDateAndTime_byDay);
         }
         else if (ui->keyBox->currentIndex()==8)
         {
-            list->sortCount(greaterThan_byDateTime);
+            list->sortCount(keyDateAndTime_byDateTime);
         }
     }
 
     showStructure();
-
 }
 
 void MainWindow::on_sortButton_clicked()
