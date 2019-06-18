@@ -288,7 +288,7 @@ void MainWindow::on_deleteButton_clicked()
         {
             delNode = list->find(key, keyDateAndTime_byDay);
         }
-        else if(ui->keyBox->currentIndex() == 7)
+        else if(ui->keyBox->currentIndex() == 8)
         {
             delNode = list->find(key, keyDateAndTime_byDateTime);
         }
@@ -301,6 +301,47 @@ void MainWindow::on_deleteButton_clicked()
     }
     else if (ui->structure3->isChecked())
     {
+        if(HashTableChained==nullptr) return;
+        int cellToDelete;
+
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byDate(key));
+        }
+        else if(ui->keyBox->currentIndex() == 1)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byTime(key));
+        }
+        else if(ui->keyBox->currentIndex() == 2)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byHour(key));
+        }
+        else if(ui->keyBox->currentIndex() == 3)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byMinute(key));
+        }
+        else if(ui->keyBox->currentIndex() == 4)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_bySecond(key));
+        }
+        else if(ui->keyBox->currentIndex() == 5)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byYear(key));
+        }
+        else if(ui->keyBox->currentIndex() == 6)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byMonth(key));
+        }
+        else if(ui->keyBox->currentIndex() == 7)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byDay(key));
+        }
+        else if(ui->keyBox->currentIndex() == 8)
+        {
+            cellToDelete = HashTableChained->hashFunction(keyDateAndTime_byDateTime(key));
+        }
+
+        HashTableChained->hashTable[cellToDelete].clear();
 
     }
     else if (ui->structure4->isChecked())
@@ -382,6 +423,62 @@ void MainWindow::on_findButton_clicked()
     }
     else if (ui->structure3->isChecked())
     {
+        if(HashTableChained==nullptr) return;
+
+        QVector<DateAndTime> foundValues;
+
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byDate);
+        }
+        else if(ui->keyBox->currentIndex() == 1)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byTime);
+        }
+        else if(ui->keyBox->currentIndex() == 2)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byHour);
+        }
+        else if(ui->keyBox->currentIndex() == 3)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byMinute);
+        }
+        else if(ui->keyBox->currentIndex() == 4)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_bySecond);
+        }
+        else if(ui->keyBox->currentIndex() == 5)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byYear);
+        }
+        else if(ui->keyBox->currentIndex() == 6)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byMonth);
+        }
+        else if(ui->keyBox->currentIndex() == 7)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byDay);
+        }
+        else if(ui->keyBox->currentIndex() == 7)
+        {
+            foundValues = HashTableChained->findByKey(key, keyDateAndTime_byDateTime);
+        }
+
+        QFile file (HashTableChained->pathToOutput);
+        if(!file.open(QIODevice::WriteOnly)) //open file
+        {
+            return;
+        }
+        QString printedList;
+        for (int i=0; i<foundValues.size(); i++)
+        {
+            printedList += DateAndTimeToString(foundValues[i]) + "\n";
+        }
+        file.write(printedList.toStdString().c_str());
+        file.close();
+        //---
+
+        ui->outputAlgo->setText(printedList); //setting visible result
 
     }
     else if (ui->structure4->isChecked())

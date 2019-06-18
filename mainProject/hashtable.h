@@ -8,9 +8,9 @@ template <class T>
 class HashTable
 {
     const int SIZE_DEFAULT = 20;
-    int hashFunction(long long key);
 public:
     const QString pathToOutput = "C:\\QTProjectsMy\\hashTable.txt";
+    int hashFunction(long long key); //made public to easy get the cell number
     HashTable(int tableSize)
     {
         if (tableSize<=0)
