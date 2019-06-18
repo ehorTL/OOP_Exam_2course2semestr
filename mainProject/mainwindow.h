@@ -27,7 +27,7 @@ private:
     Ui::MainWindow *ui;
 
     List<DateAndTime> *list = nullptr;
-    //bool chosenList = false;
+    HashTable<DateAndTime> *HashTableChained = nullptr;
 
 private slots:
     void pushValue();
@@ -40,6 +40,7 @@ private slots:
     void on_deleteButton_clicked();
     void on_findButton_clicked();
     void on_sortButton_clicked();
+    void on_structure3_toggled(bool checked);
 };
 
 #endif // MAINWINDOW_H

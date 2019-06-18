@@ -286,7 +286,6 @@ template <class T> void List<T>::sortMerge(bool (*firstGreaterThan)(T, T))
 }
 
 
-
 template <class T> void List<T>::sortCount(long long (*DataKey)(T))
 {
     if (size==0 || size==1) return;

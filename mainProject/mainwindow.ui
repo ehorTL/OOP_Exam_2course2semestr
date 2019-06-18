@@ -203,7 +203,7 @@ background-color: rgb(84, 255, 235)
 }</string>
     </property>
     <property name="text">
-     <string>CREATE NEW</string>
+     <string>CLEAR</string>
     </property>
    </widget>
    <widget class="QPushButton" name="findButton">
@@ -411,8 +411,8 @@ background-color: rgb(84, 255, 235)
    <widget class="QLabel" name="key2">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>223</y>
+      <x>240</x>
+      <y>220</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -424,8 +424,8 @@ background-color: rgb(84, 255, 235)
    <widget class="QLabel" name="key3">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>253</y>
+      <x>240</x>
+      <y>250</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -437,8 +437,8 @@ background-color: rgb(84, 255, 235)
    <widget class="QLabel" name="key4">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>283</y>
+      <x>240</x>
+      <y>280</y>
       <width>47</width>
       <height>13</height>
      </rect>
@@ -523,6 +523,39 @@ border: 1px transparent;
 border-radius: 5px;
 
 </string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinHashTableSize">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>245</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(251, 255, 198);
+</string>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>142</x>
+      <y>250</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SIZE</string>
     </property>
    </widget>
   </widget>

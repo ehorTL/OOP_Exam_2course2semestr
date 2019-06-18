@@ -103,7 +103,6 @@ void MainWindow::pushValue()
     dt.dateTime = ui->dateTimeSpin->dateTime();
     dt.seconds = ui->secondsSpin->value();
 
-
     if (ui->structure1->isChecked()) //if DL chosen
     {
         if (list==nullptr)
@@ -111,13 +110,70 @@ void MainWindow::pushValue()
             list = new List<DateAndTime>();
         }
         list->pushBack(dt);
-        //qDebug() << DateAndTimeToString(dt); //works correctly
     }
+    else if (ui->structure3->isChecked())
+    {
+        if (HashTableChained==nullptr)
+        {
+            HashTableChained = new HashTable<DateAndTime>(ui->spinHashTableSize->value());
+            ui->keyBox->setEnabled(false);
+            ui->spinHashTableSize->setEnabled(false);
+        }
+        //adding
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byDate);
+            ui->key3->setText("date");
+        }
+        else if (ui->keyBox->currentIndex() == 1)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byTime);
+            ui->key3->setText("time");
+        }
+        else if (ui->keyBox->currentIndex() == 2)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byHour);
+            ui->key3->setText("hour");
+        }
+        else if (ui->keyBox->currentIndex() == 3)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byMinute);
+            ui->key3->setText("minutes");
+        }
+        else if (ui->keyBox->currentIndex() == 4)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_bySecond);
+            ui->key3->setText("seconds");
+        }
+        else if (ui->keyBox->currentIndex() == 5)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byYear);
+            ui->key3->setText("year");
+        }
+        else if (ui->keyBox->currentIndex() == 6)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byMonth);
+            ui->key3->setText("month");
+        }
+        else if (ui->keyBox->currentIndex() == 7)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byDay);
+            ui->key3->setText("day");
+        }
+        else if (ui->keyBox->currentIndex() == 8)
+        {
+            HashTableChained->addItem(dt, keyDateAndTime_byDateTime);
+            ui->key3->setText("dateTime");
+        }
+    }
+
+    ui->createNewButton->setEnabled(true);
 }
 
 void MainWindow::showStructure()
 {
     QString path;
+
     if (ui->structure1->isChecked())
     {
         if (list==nullptr) return;
@@ -128,11 +184,22 @@ void MainWindow::showStructure()
     {
 
     }
-    else if (ui->structure2->isChecked())
+    else if (ui->structure3->isChecked())
     {
-
+        if (HashTableChained==nullptr)
+        {
+            ui->outputAlgo->setText("");
+            ui->createNewButton->setEnabled(false);
+            return;
+        }
+        else
+        {
+            HashTableChained->printHashTableInFile(DateAndTimeToString);
+            qDebug()<<"print item in file";
+        }
+        path = HashTableChained->pathToOutput;
     }
-    else if (ui->structure2->isChecked())
+    else if (ui->structure4->isChecked())
     {
 
     }
@@ -167,6 +234,16 @@ void MainWindow::on_createNewButton_clicked()
         list->clear();
         showStructure();
     }
+    else if (ui->structure3->isChecked())
+    {
+        if (HashTableChained==nullptr) return;
+        HashTableChained->clear();
+        if (HashTableChained) delete HashTableChained;
+        HashTableChained = nullptr;
+        ui->keyBox->setEnabled(true);
+        ui->spinHashTableSize->setEnabled(true);
+    }
+    showStructure();
 }
 
 void MainWindow::on_deleteButton_clicked()
@@ -718,4 +795,28 @@ void MainWindow::on_sortButton_clicked()
     auto endTime = std::chrono::steady_clock::now();
     std::chrono::duration<double> diff = endTime - startTime;
     ui->timeExecuteChangable->setText(QString::number(diff.count()));
+}
+
+
+void MainWindow::on_structure3_toggled(bool checked)
+{
+    if (checked && HashTableChained!=nullptr)
+    {
+        ui->keyBox->setEnabled(false);
+        ui->spinHashTableSize->setEnabled(false);
+    }
+    else
+    {
+        ui->keyBox->setEnabled(true);
+        ui->spinHashTableSize->setEnabled(true);
+    }
+
+    if (checked && HashTableChained==nullptr)
+    {
+        ui->createNewButton->setEnabled(false);
+    }
+    else
+    {
+        ui->createNewButton->setEnabled(true);
+    }
 }
