@@ -708,7 +708,6 @@ void MainWindow::sort()
             list->sortCount(keyDateAndTime_byDateTime);
         }
     }
-
     showStructure();
 }
 
