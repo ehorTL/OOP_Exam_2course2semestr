@@ -5,6 +5,7 @@
 #include <QString>
 #include <QFile>
 #include<QDebug>
+#include<algorithm>
 
 template <class T>
 class Node
@@ -177,20 +178,36 @@ template <class T> void List<T>::clear()
 
 template <class T> void List<T>::sortInsert(bool (*firstGreaterThan)(T, T))
 {
-    if (size==0 || size==1) return;
+    if (size==0 || size==1) return; //already sorted
+    //else
+    Node<T> *curLastPos = head->next;
+    Node<T> *cur = head->next;
+    Node<T> *prev = head;
+    for (int i=1; i<size; i++)
+    {
+        cur = curLastPos;
+        prev = cur->prev;
+        for (int j=i; j>0 && firstGreaterThan(prev->Data, cur->Data); j--)
+        {
+            std::swap(prev->Data, cur->Data);
+            cur = prev;
+            prev = prev->prev;
+        }
+        curLastPos = curLastPos->next;
+    }
 
 }
 template <class T> void List<T>::sortMerge(bool (*firstGreaterThan)(T, T))
 {
-
+    if (size==0 || size==1) return;
 }
 template <class T> void List<T>:: sortHeap(bool (*firstGreaterThan)(T, T))
 {
-
+    if (size==0 || size==1) return;
 }
 template <class T> void List<T>::sortCount(bool (*firstGreaterThan)(T, T))
 {
-
+    if (size==0 || size==1) return;
 }
 
 #endif // LIST_H

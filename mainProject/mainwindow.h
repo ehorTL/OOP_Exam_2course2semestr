@@ -6,6 +6,9 @@
 
 #include "list.h"
 #include "dateandtime.h"
+#include"rbtree.h"
+#include"hashtable.h"
+#include"bplustree.h"
 
 namespace Ui {
 class MainWindow;

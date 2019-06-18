@@ -362,10 +362,11 @@ void MainWindow::on_sortButton_clicked()
         return;
     }
     //else
-    if (ui->sortBox->currentIndex() == 0)
+    if (ui->sortBox->currentIndex() == 0) //start insert sorting
     {
         if (ui->keyBox->currentIndex()==0)
         {
+            //qDebug() << "sorting started";
             list->sortInsert(greaterThan_byDate);
         }
         else if (ui->keyBox->currentIndex()==1)
@@ -401,7 +402,7 @@ void MainWindow::on_sortButton_clicked()
             list->sortInsert(greaterThan_byDateTime);
         }
     }
-    else if (ui->sortBox->currentIndex() == 1)
+    else if (ui->sortBox->currentIndex() == 1) //start heap sorting
     {
         if (ui->keyBox->currentIndex()==0)
         {
@@ -440,7 +441,7 @@ void MainWindow::on_sortButton_clicked()
             list->sortHeap(greaterThan_byDateTime);
         }
     }
-    else if (ui->sortBox->currentIndex() == 2)
+    else if (ui->sortBox->currentIndex() == 2) //start merge sorting
     {
         if (ui->keyBox->currentIndex()==0)
         {
@@ -479,7 +480,7 @@ void MainWindow::on_sortButton_clicked()
             list->sortMerge(greaterThan_byDateTime);
         }
     }
-    else if (ui->sortBox->currentIndex() == 3)
+    else if (ui->sortBox->currentIndex() == 3) //start count sorting
     {
         if (ui->keyBox->currentIndex()==0)
         {
