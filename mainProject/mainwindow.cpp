@@ -355,7 +355,81 @@ bool greaterThan_bySecond(DateAndTime a, DateAndTime b)
 }
 ///------------------------------------------------------
 
-void MainWindow::on_sortButton_clicked()
+class CompBigger_byTime
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (keyDateAndTime_byTime(a) > keyDateAndTime_byTime(b));
+    }
+};
+class CompBigger_byDate
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (keyDateAndTime_byDate(a) > keyDateAndTime_byDate(b));
+    }
+};
+class CompBigger_byDateTime
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (keyDateAndTime_byDateTime(a) > keyDateAndTime_byDateTime(b));
+    }
+};
+class CompBigger_byYear
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (a.dateTime.date().year() > b.dateTime.date().year());
+    }
+};
+class CompBigger_byMonth
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (a.dateTime.date().month() > b.dateTime.date().month());
+    }
+};
+class CompBigger_byDay
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (a.dateTime.date().day() > b.dateTime.date().day());
+    }
+};
+class CompBigger_byHour
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (a.dateTime.time().hour() > b.dateTime.time().hour());
+    }
+};
+class CompBigger_byMinute
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return (a.dateTime.time().minute() > b.dateTime.time().minute());
+    }
+};
+class CompBigger_bySecond
+{
+public:
+    bool operator() (DateAndTime a, DateAndTime b)
+    {
+        return  (a.seconds > b.seconds);
+    }
+};
+///------------------------------------------------------
+
+void MainWindow::sort()
 {
     if (!(ui->structure1->isChecked())) //sorting is only appplied to list structure
     {
@@ -366,7 +440,6 @@ void MainWindow::on_sortButton_clicked()
     {
         if (ui->keyBox->currentIndex()==0)
         {
-            //qDebug() << "sorting started";
             list->sortInsert(greaterThan_byDate);
         }
         else if (ui->keyBox->currentIndex()==1)
@@ -402,43 +475,158 @@ void MainWindow::on_sortButton_clicked()
             list->sortInsert(greaterThan_byDateTime);
         }
     }
-    else if (ui->sortBox->currentIndex() == 1) //start heap sorting
+    else if (ui->sortBox->currentIndex() == 1) //start heap sorting, not uses explicit sort functions call
     {
+        std::vector<DateAndTime> v;
+        Node<DateAndTime> *p = list->head;
+        for (int i=0; i<list->size; i++)
+        {
+            v.push_back(p->Data);
+            p = p->next;
+        }
+
         if (ui->keyBox->currentIndex()==0)
         {
-            list->sortHeap(greaterThan_byDate);
+           std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byDate> pq;
+           for (int i=0; i<v.size(); i++)
+           {
+               pq.push(v[i]);
+           }
+           p = list->head;
+           for (int i=0; i<list->size; i++)
+           {
+               p->Data = pq.top();
+               pq.pop();
+               p = p->next;
+           }
         }
         else if (ui->keyBox->currentIndex()==1)
         {
-            list->sortHeap(greaterThan_byTime);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byTime> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
         else if (ui->keyBox->currentIndex()==2)
         {
-            list->sortHeap(greaterThan_byHour);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byHour> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
         else if (ui->keyBox->currentIndex()==3)
         {
-            list->sortHeap(greaterThan_byMinute);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byMinute> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
         else if (ui->keyBox->currentIndex()==4)
         {
-            list->sortHeap(greaterThan_bySecond);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_bySecond> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
         else if (ui->keyBox->currentIndex()==5)
         {
-            list->sortHeap(greaterThan_byYear);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byYear> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
         else if (ui->keyBox->currentIndex()==6)
         {
-            list->sortHeap(greaterThan_byMonth);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byMonth> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
         else if (ui->keyBox->currentIndex()==7)
         {
-            list->sortHeap(greaterThan_byDay);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byDay> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
         else if (ui->keyBox->currentIndex()==8)
         {
-            list->sortHeap(greaterThan_byDateTime);
+            std::priority_queue<DateAndTime, std::vector<DateAndTime>, CompBigger_byDateTime> pq;
+            for (int i=0; i<v.size(); i++)
+            {
+                pq.push(v[i]);
+            }
+            p = list->head;
+            for (int i=0; i<list->size; i++)
+            {
+                p->Data = pq.top();
+                pq.pop();
+                p = p->next;
+            }
+
         }
     }
     else if (ui->sortBox->currentIndex() == 2) //start merge sorting
@@ -479,6 +667,7 @@ void MainWindow::on_sortButton_clicked()
         {
             list->sortMerge(greaterThan_byDateTime);
         }
+
     }
     else if (ui->sortBox->currentIndex() == 3) //start count sorting
     {
@@ -521,4 +710,10 @@ void MainWindow::on_sortButton_clicked()
     }
 
     showStructure();
+
+}
+
+void MainWindow::on_sortButton_clicked()
+{
+    sort();
 }

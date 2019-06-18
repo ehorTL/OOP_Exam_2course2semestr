@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include<QDebug>
-
 #include "list.h"
 #include "dateandtime.h"
 #include"rbtree.h"
@@ -31,6 +30,7 @@ private:
 private slots:
     void pushValue();
     void showStructure();
+    void sort();
     void on_pushButton_clicked();
 
     void on_pushButton_2_clicked();

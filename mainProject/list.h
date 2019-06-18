@@ -6,6 +6,8 @@
 #include <QFile>
 #include<QDebug>
 #include<algorithm>
+#include<queue>
+#include<vector>
 
 template <class T>
 class Node
@@ -26,10 +28,14 @@ public:
 template <class T>
 class List
 {
-    Node<T> *head, *tail;
-    int size;
+    //Node<T> *head, *tail;
+    //int size;
 public:
     const QString pathToOutput = "C:\\QTProjectsMy\\list.txt";
+
+    Node<T> *head, *tail; //made public in order not to create get- methods
+    int size; //made public
+
     List()
     {
         head = tail = nullptr;
@@ -45,7 +51,7 @@ public:
 
     void sortInsert(bool (*firstGreaterThan)(T, T));
     void sortMerge(bool (*firstGreaterThan)(T, T));
-    void sortHeap(bool (*firstGreaterThan)(T, T));
+    //void sortHeap(std::priority_queue<T> &pq);
     void sortCount(bool (*firstGreaterThan)(T, T));
 };
 
@@ -197,14 +203,30 @@ template <class T> void List<T>::sortInsert(bool (*firstGreaterThan)(T, T))
     }
 
 }
+
+//template <class T> void List<T>:: sortHeap(bool (*firstGreaterThan)(T, T))
+/*template <class T> void List<T>:: sortHeap(std::priority_queue<T> &pq)
+{
+    if (size==0 || size==1) return;
+    if (pq.size() != size) return;
+    //else
+    Node<T> *p = head;
+    for (int i=0; i<size; i++)
+    {
+        p->Data = pq.top();
+        pq.pop();
+        p = p->next;
+    }
+}
+*/
+
 template <class T> void List<T>::sortMerge(bool (*firstGreaterThan)(T, T))
 {
     if (size==0 || size==1) return;
 }
-template <class T> void List<T>:: sortHeap(bool (*firstGreaterThan)(T, T))
-{
-    if (size==0 || size==1) return;
-}
+
+
+
 template <class T> void List<T>::sortCount(bool (*firstGreaterThan)(T, T))
 {
     if (size==0 || size==1) return;
