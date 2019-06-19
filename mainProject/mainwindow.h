@@ -5,11 +5,20 @@
 #include<QDebug>
 #include<chrono>
 #include<ctime>
+#include<vector>
 #include "list.h"
 #include "dateandtime.h"
 #include"rbtree.h"
 #include"hashtable.h"
 #include"bplustree.h"
+
+/**
+* In files list.h, bplustree.h, hashtable.h in relative class declarations
+* const fields named like "pathToOutput" must be set before use.
+* Used absolute pathes.
+*
+* Realized patterns: template method, adapter.
+*/
 
 namespace Ui {
 class MainWindow;
@@ -42,6 +51,7 @@ private slots:
     void on_findButton_clicked();
     void on_sortButton_clicked();
     void on_structure3_toggled(bool checked);
+    void on_structure4_toggled(bool checked);
 };
 
 #endif // MAINWINDOW_H

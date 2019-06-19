@@ -258,6 +258,7 @@ void MainWindow::showStructure()
     {
         if (bTree==nullptr)
         {
+            qDebug() << "nullptr equal";
             ui->outputAlgo->setText("");
             ui->createNewButton->setEnabled(false); //clear button
             return;
@@ -311,7 +312,13 @@ void MainWindow::on_createNewButton_clicked()
     }
     else if (ui->structure4->isChecked())
     {
-
+        if (bTree==nullptr) return;
+        bTree->clear();
+        if (bTree) delete bTree;
+        bTree = nullptr;
+        if (bTree == nullptr) qDebug() << "btree null equal";
+        ui->keyBox->setEnabled(true);
+        ui->spinBtreeSize->setEnabled(true);
     }
 
     showStructure();
@@ -417,7 +424,7 @@ void MainWindow::on_deleteButton_clicked()
     }
     else if (ui->structure4->isChecked())
     {
-
+        //do nothing still
     }
 
     showStructure();
@@ -465,7 +472,7 @@ void MainWindow::on_findButton_clicked()
         {
             foundValues = list->findAll(key, keyDateAndTime_byDay);
         }
-        else if(ui->keyBox->currentIndex() == 7)
+        else if(ui->keyBox->currentIndex() == 8)
         {
             foundValues = list->findAll(key, keyDateAndTime_byDateTime);
         }
@@ -530,7 +537,7 @@ void MainWindow::on_findButton_clicked()
         {
             foundValues = HashTableChained->findByKey(key, keyDateAndTime_byDay);
         }
-        else if(ui->keyBox->currentIndex() == 7)
+        else if(ui->keyBox->currentIndex() == 8)
         {
             foundValues = HashTableChained->findByKey(key, keyDateAndTime_byDateTime);
         }
@@ -554,6 +561,62 @@ void MainWindow::on_findButton_clicked()
     }
     else if (ui->structure4->isChecked())
     {
+        if(bTree==nullptr) return;
+
+        std::vector<DateAndTime> foundValues;
+
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            foundValues = bTree->find(keyDateAndTime_byDate(key));
+        }
+        else if(ui->keyBox->currentIndex() == 1)
+        {
+            foundValues = bTree->find(keyDateAndTime_byTime(key));
+        }
+        else if(ui->keyBox->currentIndex() == 2)
+        {
+            foundValues = bTree->find(keyDateAndTime_byHour(key));
+        }
+        else if(ui->keyBox->currentIndex() == 3)
+        {
+            foundValues = bTree->find(keyDateAndTime_byMinute(key));
+        }
+        else if(ui->keyBox->currentIndex() == 4)
+        {
+            foundValues = bTree->find(keyDateAndTime_bySecond(key));
+        }
+        else if(ui->keyBox->currentIndex() == 5)
+        {
+            foundValues = bTree->find(keyDateAndTime_byYear(key));
+        }
+        else if(ui->keyBox->currentIndex() == 6)
+        {
+            foundValues = bTree->find(keyDateAndTime_byMonth(key));
+        }
+        else if(ui->keyBox->currentIndex() == 7)
+        {
+            foundValues = bTree->find(keyDateAndTime_byDay(key));
+        }
+        else if(ui->keyBox->currentIndex() == 8)
+        {
+            foundValues = bTree->find(keyDateAndTime_byDateTime(key));
+        }
+
+        QFile file (bTree->pathToOutput);
+        if(!file.open(QIODevice::WriteOnly)) //open file
+        {
+            return;
+        }
+        QString printedList;
+        for (int i=0; i<foundValues.size(); i++)
+        {
+            printedList += DateAndTimeToString(foundValues[i]) + "\n";
+        }
+        file.write(printedList.toStdString().c_str());
+        file.close();
+        //---
+
+        ui->outputAlgo->setText(printedList); //setting visible result
 
     }
 
@@ -986,5 +1049,17 @@ void MainWindow::on_structure3_toggled(bool checked)
     else
     {
         ui->createNewButton->setEnabled(true);
+    }
+}
+
+void MainWindow::on_structure4_toggled(bool checked)
+{
+    if (checked)
+    {
+        ui->deleteButton->setEnabled(false);
+    }
+    else
+    {
+        ui->deleteButton->setEnabled(true);
     }
 }

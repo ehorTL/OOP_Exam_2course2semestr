@@ -41,6 +41,7 @@ namespace ms {
         std::vector<Value> find(const Key & key) const;
         bool erase(const Key & key);
         void print(QString (*dataToString)(Value)) const;
+        void clear() {if (rootNode) delete this->rootNode; rootNode = nullptr;}
     protected:
         Node* rootNode;
         void find_from(const Node * node, const Key & key, std::vector<Value> & insertTo, typename NodeContentType::iterator from) const;
