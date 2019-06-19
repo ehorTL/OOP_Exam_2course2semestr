@@ -166,6 +166,61 @@ void MainWindow::pushValue()
             ui->key3->setText("dateTime");
         }
     }
+    else if (ui->structure4->isChecked()) //tree chosen
+    {
+        if (bTree==nullptr)
+        {
+            bTree= new ms::BTree<long long, DateAndTime>(ui->spinBtreeSize->value());
+            ui->keyBox->setEnabled(false);
+            ui->spinBtreeSize->setEnabled(false);
+        }
+        //adding
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            bTree->insert(keyDateAndTime_byDate(dt), dt);
+            ui->key4->setText("date");
+        }
+        else if (ui->keyBox->currentIndex() == 1)
+        {
+            bTree->insert(keyDateAndTime_byTime(dt), dt);
+            ui->key4->setText("time");
+        }
+        else if (ui->keyBox->currentIndex() == 2)
+        {
+            bTree->insert(keyDateAndTime_byHour(dt), dt);
+            ui->key4->setText("hour");
+        }
+        else if (ui->keyBox->currentIndex() == 3)
+        {
+            bTree->insert(keyDateAndTime_byMinute(dt), dt);
+            ui->key4->setText("minutes");
+        }
+        else if (ui->keyBox->currentIndex() == 4)
+        {
+            bTree->insert(keyDateAndTime_bySecond(dt), dt);
+            ui->key4->setText("seconds");
+        }
+        else if (ui->keyBox->currentIndex() == 5)
+        {
+            bTree->insert(keyDateAndTime_byYear(dt), dt);
+            ui->key4->setText("year");
+        }
+        else if (ui->keyBox->currentIndex() == 6)
+        {
+            bTree->insert(keyDateAndTime_byMonth(dt), dt);
+            ui->key4->setText("month");
+        }
+        else if (ui->keyBox->currentIndex() == 7)
+        {
+            bTree->insert(keyDateAndTime_byDay(dt), dt);
+            ui->key4->setText("day");
+        }
+        else if (ui->keyBox->currentIndex() == 8)
+        {
+            bTree->insert(keyDateAndTime_byDateTime(dt), dt);
+            ui->key4->setText("dateTime");
+        }
+    }
 
     ui->createNewButton->setEnabled(true);
 }
@@ -201,7 +256,18 @@ void MainWindow::showStructure()
     }
     else if (ui->structure4->isChecked())
     {
-
+        if (bTree==nullptr)
+        {
+            ui->outputAlgo->setText("");
+            ui->createNewButton->setEnabled(false); //clear button
+            return;
+        }
+        else
+        {
+            bTree->print(DateAndTimeToString);
+            qDebug()<<"print item tree in file";
+        }
+        path = bTree->pathToOutput;
     }
 
     QFile file(path);
@@ -243,6 +309,11 @@ void MainWindow::on_createNewButton_clicked()
         ui->keyBox->setEnabled(true);
         ui->spinHashTableSize->setEnabled(true);
     }
+    else if (ui->structure4->isChecked())
+    {
+
+    }
+
     showStructure();
 }
 

@@ -28,6 +28,7 @@ private:
 
     List<DateAndTime> *list = nullptr;
     HashTable<DateAndTime> *HashTableChained = nullptr;
+    ms::BTree<long long, DateAndTime> *bTree = nullptr;
 
 private slots:
     void pushValue();
