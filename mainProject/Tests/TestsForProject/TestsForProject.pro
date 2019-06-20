@@ -12,21 +12,19 @@ INCLUDEPATH += "googlemock/include"
 
 SOURCES += \
     main.cpp \
+    googletest/src/gtest-all.cc \
+    googlemock/src/gmock-all.cc \
     ../../bplustree.cpp \
     ../../dateandtime.cpp \
     ../../hashtable.cpp \
-    ../../list.cpp \
-    ../../rbtree.cpp \
-    googletest/src/gtest-all.cc \
-    googlemock/src/gmock-all.cc
+    ../../list.cpp\
 
 FORMS += \
     ../../mainwindow.ui \
 
 HEADERS += \
+    main.h \
     ../../bplustree.h \
     ../../dateandtime.h \
     ../../hashtable.h \
-    ../../list.h \
-    ../../rbtree.h \
-    main.h
+    ../../list.h

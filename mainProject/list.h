@@ -146,7 +146,7 @@ template <class T> QVector<Node<T>*> List<T>::findAll(T keyData, long long(*keyI
 
     for (int i=0; i<resultVector.size(); i++)
     {
-        qDebug()<< QString::number(i) << " ";
+        //qDebug()<< QString::number(i) << " ";
     }
     return resultVector;
 }
@@ -326,7 +326,7 @@ template <class T> void List<T>::sortCount(long long (*DataKey)(T))
         for (int j=0; j<stableSortVector[i].size(); j++)
         {
             pt->Data = stableSortVector[i][j];
-            qDebug()<< DataKey(pt->Data);
+            //qDebug()<< DataKey(pt->Data);
             pt = pt->next;
         }
     }
