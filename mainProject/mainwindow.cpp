@@ -6,7 +6,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setWindowTitle("Date And Time");
+    setWindowTitle("Date And Time");    
+    ui->outputAlgo->setLineWrapMode(QTextBrowser::NoWrap);
 }
 
 MainWindow::~MainWindow()
@@ -166,6 +167,61 @@ void MainWindow::pushValue()
             ui->key3->setText("dateTime");
         }
     }
+    else if (ui->structure2->isChecked()) //red black tree chosen
+    {
+        if (rbTree==nullptr)
+        {
+            rbTree = new RedBlack<long long, DateAndTime>;
+            ui->keyBox->setEnabled(false);
+        }
+        //adding value
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            rbTree->Insert(keyDateAndTime_byDate(dt), dt);
+            ui->key2->setText("date");
+        }
+        else if (ui->keyBox->currentIndex() == 1)
+        {
+            rbTree->Insert(keyDateAndTime_byTime(dt), dt);
+            ui->key2->setText("time");
+        }
+        else if (ui->keyBox->currentIndex() == 2)
+        {
+            rbTree->Insert(keyDateAndTime_byHour(dt), dt);
+            ui->key2->setText("hour");
+        }
+        else if (ui->keyBox->currentIndex() == 3)
+        {
+            rbTree->Insert(keyDateAndTime_byMinute(dt), dt);
+            ui->key2->setText("minutes");
+        }
+        else if (ui->keyBox->currentIndex() == 4)
+        {
+            rbTree->Insert(keyDateAndTime_bySecond(dt), dt);
+            ui->key2->setText("seconds");
+        }
+        else if (ui->keyBox->currentIndex() == 5)
+        {
+            rbTree->Insert(keyDateAndTime_byYear(dt), dt);
+            ui->key2->setText("year");
+        }
+        else if (ui->keyBox->currentIndex() == 6)
+        {
+            rbTree->Insert(keyDateAndTime_byMonth(dt), dt);
+            ui->key2->setText("month");
+        }
+        else if (ui->keyBox->currentIndex() == 7)
+        {
+            rbTree->Insert(keyDateAndTime_byDay(dt), dt);
+            ui->key2->setText("day");
+        }
+        else if (ui->keyBox->currentIndex() == 8)
+        {
+            rbTree->Insert(keyDateAndTime_byDateTime(dt), dt);
+            ui->key2->setText("dateTime");
+        }
+
+    }
     else if (ui->structure4->isChecked()) //tree chosen
     {
         if (bTree==nullptr)
@@ -237,7 +293,13 @@ void MainWindow::showStructure()
     }
     else if (ui->structure2->isChecked())
     {
-
+        if (rbTree==nullptr)
+        {
+            ui->outputAlgo->setText("");
+            return;
+        }
+        rbTree->Dump(DateAndTimeToString);
+        path = rbTree->pathToOutput;
     }
     else if (ui->structure3->isChecked())
     {
@@ -300,6 +362,15 @@ void MainWindow::on_createNewButton_clicked()
     {
         list->clear();
         showStructure();
+    }
+    else if (ui->structure2->isChecked())
+    {
+        if (rbTree==nullptr) return;
+        rbTree->clear();
+        if (rbTree) delete rbTree;
+        rbTree = nullptr;
+        ui->keyBox->setEnabled(true);
+        ui->createNewButton->setEnabled(false);
     }
     else if (ui->structure3->isChecked())
     {
@@ -375,7 +446,44 @@ void MainWindow::on_deleteButton_clicked()
     }
     else if (ui->structure2->isChecked())
     {
+        if (rbTree==nullptr) return;
 
+        if (ui->keyBox->currentIndex() == 0)
+        {
+            rbTree->Delete(keyDateAndTime_byDate(key));
+        }
+        else if(ui->keyBox->currentIndex() == 1)
+        {
+            rbTree->Delete(keyDateAndTime_byTime(key));
+        }
+        else if(ui->keyBox->currentIndex() == 2)
+        {
+            rbTree->Delete(keyDateAndTime_byHour(key));
+        }
+        else if(ui->keyBox->currentIndex() == 3)
+        {
+            rbTree->Delete(keyDateAndTime_byMinute(key));
+        }
+        else if(ui->keyBox->currentIndex() == 4)
+        {
+            rbTree->Delete(keyDateAndTime_bySecond(key));
+        }
+        else if(ui->keyBox->currentIndex() == 5)
+        {
+            rbTree->Delete(keyDateAndTime_byYear(key));
+        }
+        else if(ui->keyBox->currentIndex() == 6)
+        {
+            rbTree->Delete(keyDateAndTime_byMonth(key));
+        }
+        else if(ui->keyBox->currentIndex() == 7)
+        {
+            rbTree->Delete(keyDateAndTime_byDay(key));
+        }
+        else if(ui->keyBox->currentIndex() == 8)
+        {
+            rbTree->Delete(keyDateAndTime_byDateTime(key));
+        }
     }
     else if (ui->structure3->isChecked())
     {
@@ -497,6 +605,55 @@ void MainWindow::on_findButton_clicked()
     }
     else if (ui->structure2->isChecked())
     {
+        if(rbTree==nullptr) return; //nothing to search
+
+        DateAndTime foundUniqueValue;
+        try{
+            if (ui->keyBox->currentIndex() == 0)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byDate(key));
+            }
+            else if(ui->keyBox->currentIndex() == 1)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byTime(key));
+            }
+            else if(ui->keyBox->currentIndex() == 2)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byHour(key));
+            }
+            else if(ui->keyBox->currentIndex() == 3)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byMinute(key));
+            }
+            else if(ui->keyBox->currentIndex() == 4)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_bySecond(key));
+            }
+            else if(ui->keyBox->currentIndex() == 5)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byYear(key));
+            }
+            else if(ui->keyBox->currentIndex() == 6)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byMonth(key));
+            }
+            else if(ui->keyBox->currentIndex() == 7)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byDay(key));
+            }
+            else if(ui->keyBox->currentIndex() == 8)
+            {
+                foundUniqueValue = rbTree->Find(keyDateAndTime_byDateTime(key));
+            }
+
+        }
+        catch(...)
+        {
+            ui->outputAlgo->setText("NOTHING FOUND");
+            return;
+        }
+
+        ui->outputAlgo->setText(DateAndTimeToString(foundUniqueValue)); //setting visible result
 
     }
     else if (ui->structure3->isChecked())
@@ -617,7 +774,6 @@ void MainWindow::on_findButton_clicked()
         //---
 
         ui->outputAlgo->setText(printedList); //setting visible result
-
     }
 
 }
@@ -1061,5 +1217,24 @@ void MainWindow::on_structure4_toggled(bool checked)
     else
     {
         ui->deleteButton->setEnabled(true);
+    }
+}
+
+void MainWindow::on_structure2_toggled(bool checked)
+{
+    if (checked && rbTree==nullptr)
+    {
+        ui->createNewButton->setEnabled(false);
+    }
+
+    if (checked && rbTree!=nullptr)
+    {
+        ui->keyBox->setEnabled(false);
+    }
+
+    if (!checked)
+    {
+        ui->createNewButton->setEnabled(true);
+        ui->keyBox->setEnabled(true);
     }
 }

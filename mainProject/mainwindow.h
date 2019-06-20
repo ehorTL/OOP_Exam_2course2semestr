@@ -38,6 +38,7 @@ private:
     List<DateAndTime> *list = nullptr;
     HashTable<DateAndTime> *HashTableChained = nullptr;
     ms::BTree<long long, DateAndTime> *bTree = nullptr;
+    RedBlack<long long, DateAndTime> *rbTree = nullptr;
 
 private slots:
     void pushValue();
@@ -52,6 +53,7 @@ private slots:
     void on_sortButton_clicked();
     void on_structure3_toggled(bool checked);
     void on_structure4_toggled(bool checked);
+    void on_structure2_toggled(bool checked);
 };
 
 #endif // MAINWINDOW_H
